@@ -1,0 +1,20 @@
+{
+    "name": "Servicio de Administración para el Campo",
+    "short_name": "SAC",
+    "start_url": ".",
+    "background_color": "#222",
+    "theme_color": "#009578",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "/images/vaca192.webp",
+            "sizes": "192x192",
+            "type": "image/webp"
+        },
+        {
+            "src": "/images/vaca512.webp",
+            "sizes": "512x512",
+            "type": "image/webp"
+        }
+    ]
+}
