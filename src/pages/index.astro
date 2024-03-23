@@ -1,5 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import PruebaDB from "../components/PruebaDB.astro";
+
+export const prerender = false
 ---
 
 <Layout title="Bienvenido a SAC">
@@ -29,8 +32,13 @@ import Layout from "../layouts/Layout.astro";
     </section>
 
     <a
-	href="./login"
+      href="./login"
       class="bg-blue-500 rounded-xl items-center py-1.5 px-2.5 text-white text-xl font-bold mt-16 hover:shadow-lg hover:bg-blue-700"
-      >Comenzar ahora</a>
+      >Comenzar ahora</a
+    >
+
+    <PruebaDB />
   </main>
+
+  
 </Layout>
