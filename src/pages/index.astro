@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import PruebaDB from "../components/PruebaDB.astro";
 
 export const prerender = false
 ---
@@ -31,13 +30,19 @@ export const prerender = false
       <p>- Compartir Conocimientos y Concejos</p>
     </section>
 
+    <h3 class="text-blue-500 font-bold text-2xl mt-16 mb-3">¿Aun no tienes una cuenta?</h3>
     <a
-      href="./login"
-      class="bg-blue-500 rounded-xl items-center py-1.5 px-2.5 text-white text-xl font-bold mt-16 hover:shadow-lg hover:bg-blue-700"
+      href="./register"
+      class="bg-[#FD6A13] rounded-xl items-center py-1 px-2 text-white text-lg font-bold hover:shadow-lg hover:bg-white hover:text-[#FD6A13]"
       >Comenzar ahora</a
     >
-
-    <PruebaDB />
+    
+    <h3 class="text-blue-500 font-bold text-2xl mt-16 mb-3">¿Ya tienes cuenta?</h3>
+    <a
+      href="./login"
+      class="bg-blue-500 rounded-xl items-center py-1 px-2 text-white text-lg font-bold hover:shadow-lg hover:bg-blue-700"
+      >Iniciar Sesion</a
+    >
   </main>
 
   
