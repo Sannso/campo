@@ -1,8 +1,41 @@
-import { defineDb, defineTable, column } from 'astro:db';
-import { Users, Sessions } from "./usuario/loginInfo";
+import { defineDb, column, defineTable } from 'astro:db';
+
+
+// User Sesion Tables
+export const Users = defineTable({
+  columns:{
+    id: column.number({primaryKey:true}),
+    email: column.text(),
+    password: column.text(),
+  }
+})
+
+export const Sessions = defineTable({
+  columns:{
+    id: column.number({primaryKey: true}),
+    userID: column.number({references: () => Users.columns.id}),
+    expiresAt: column.number()
+  }
+})
+
+
+// User Personal Info
+export const PersonalInfo = defineTable({
+  columns:{
+    id: column.number({primaryKey: true}),
+    userID: column.number({references: () => Users.columns.id}),
+    name: column.text(),
+    firstName: column.text(),
+    lastName: column.text(),
+    type: column.text(), // Solo Agricultor, Productor, Ambos
+    cellphone: column.number(),
+    cpIndicator: column.number()
+  }
+})
+
 
 
 // https://astro.build/db/config
 export default defineDb({
-  tables: { Users, Sessions }
+  tables: { Users, Sessions, PersonalInfo }
 });
