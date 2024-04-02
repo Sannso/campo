@@ -1,0 +1,52 @@
+{
+  "home": {
+    "cards" : [
+      {
+        "id": 1,
+        "title": "Registro y seguimiento de labores",
+        "link": "",
+        "whatHow": "Te permite registrar y realizar seguimiento de las tareas diarias en el campo, tanto en agricultura como en produccion, ejemplos a continuacion. Esto te ayudara a tener un registro historico de las actividades realizados y facilitara la planificacion futura.",
+        "agricultor": "Registros para Agricultura: Riego, fertilizacion y control de plagas.",
+        "productor": "Registros para Producción: Alimentacion, vacunas, registro de enfermedades y visitas medicas."
+      },
+      {
+        "id": 2,
+        "title": "Gestión de inventario y suministro",
+        "link": "",
+        "whatHow": "Te ayuda a gestionar tu inventario, para agricultura y/o produccion, las opciones a continuacion. La aplicacion te generara notificaciones cuando sea necesario reabastecer o realizar pedidos, para garantizar un suministro constante.",
+        "agricultor": "Gestion en el inventario agricola: Insumos agricolas, como semillas, fertilizantes y pesticidas.",
+        "productor":"Gestion en el inventario productor: Pienzos/concentrados, medicamentos, bebederos, comederos."
+      },
+      {
+        "id": 3,
+        "title": "Monitoreo de cultivos/animales y clima",
+        "link": "",
+        "whatHow": "Puedes ver datos detallados en tiempo real sobre las condiciones climaticas, como la temperatura, la humedad y las precipitaciones. Esto te permitira tomar decisiones informadas sobre por ejemplo el riego y la proteccion de cultivos",
+        "agricultor": "",
+        "productor": ""
+      },
+      {
+        "id": 4,
+        "title": "Compartir conocimientos y consejos",
+        "link": "",
+        "whatHow": "Aqui puedes compartir experiencias, consejos y buenas practicas agricolas y de produccion utilizando un blog, esto fomentará el intercambio de conocimientos entre los agricultores y ayudará a mejorar las técnicas de cultivo en la comunidad",
+        "agricultor": "",
+        "productor":""
+      }
+    ],
+    "cardInfo": "¿Qué es y como funciona?"
+  },
+  "work": [
+    {
+      "name": "UTP - Aura",
+      "position": "Desarrollador Full Stack",
+      "url": "https://monitores-crie.utp.edu.co/",
+      "startDate": "2021",
+      "endDate": "2022",
+      "summary": "Trabajé en las páginas de monitores y de la aplicación 'Aura' de la universidad hechas en php-laravel y también en módulos de comunicación que estaban en python.",
+      "technologies": "Python, Laravel",
+      "remote": false,
+      "highlights": []
+    }
+  ]
+}

@@ -1,13 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import FormRegister from "../components/FormRegister.astro";
+//import FormRegister from "../components/FormRegister.astro";
+import {RegisterForm} from "../components/FormRegisterReact";
+import RegisterModal from '../components/modals/RegisterModal.astro'
 
 export const prerender = false;
 ---
 
 <Layout title="Login">
   <main class="flex flex-col items-center py-16">
-    <h1 class="text-3xl text-white font-bold">Registrarse</h1>
-    <FormRegister />
+    <h1 class="text-3xl text-blue-500 font-bold">Registrarse</h1>
+    <RegisterForm client:only>
+      <RegisterModal slot="modal"/>
+    </RegisterForm>
   </main>
 </Layout>

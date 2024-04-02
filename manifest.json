@@ -2,7 +2,7 @@
     "name": "Servicio de Administración para el Campo",
     "short_name": "SAC",
     "start_url": ".",
-    "background_color": "#222",
+    "background_color": "#09090b",
     "theme_color": "#009578",
     "display": "standalone",
     "icons": [

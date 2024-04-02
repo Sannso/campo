@@ -4,7 +4,7 @@ import { defineDb, column, defineTable } from 'astro:db';
 // User Sesion Tables
 export const Users = defineTable({
   columns:{
-    id: column.number({primaryKey:true}),
+    id: column.text({primaryKey:true, optional:false, unique:true}), // Puede tener optional:false, unique: true
     email: column.text(),
     password: column.text(),
   }
@@ -12,9 +12,9 @@ export const Users = defineTable({
 
 export const Sessions = defineTable({
   columns:{
-    id: column.number({primaryKey: true}),
-    userID: column.number({references: () => Users.columns.id}),
-    expiresAt: column.number()
+    id: column.text({optional:false, unique:true}),
+    userId: column.text({optional:false, references: () => Users.columns.id}),
+    expiresAt: column.number({optional:false})
   }
 })
 
@@ -22,8 +22,8 @@ export const Sessions = defineTable({
 // User Personal Info
 export const PersonalInfo = defineTable({
   columns:{
-    id: column.number({primaryKey: true}),
-    userID: column.number({references: () => Users.columns.id}),
+    id: column.text({primaryKey: true, optional:false, unique:true}),
+    userID: column.text({references: () => Users.columns.id}),
     name: column.text(),
     firstName: column.text(),
     lastName: column.text(),
