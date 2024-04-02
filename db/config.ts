@@ -37,5 +37,5 @@ export const PersonalInfo = defineTable({
 
 // https://astro.build/db/config
 export default defineDb({
-  tables: { Users, Sessions, PersonalInfo }
+  tables: { }
 });
