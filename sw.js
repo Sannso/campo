@@ -1,8 +1,11 @@
+
+const urls = ["./", "./login", "./register", "./home", "./images/vaca192.webp"]
+
 self.addEventListener("install", (e) => {
   // console.log("Install!"); all this run just once
   e.waitUntil(
     caches.open("static").then((cache) => {
-      return cache.addAll(["./", "./login", "./images/vaca192.webp"]); // Se carga tambien el css etc
+      return cache.addAll(urls); // Se carga tambien el css etc
     })
   );
 });

@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro"
+import Footer from "@/components/Footer.astro";
+import { admin } from "@es";
+
+import { db, Users, PersonalInfo} from "astro:db";
+import { eq } from "astro:db";
+import UsersTable from "@/components/tables/UsersTable.astro";
+
+export const prerender = false;
+
+const user = Astro.locals.user;
+console.log(user)
+if(user?.id == undefined){
+  return Astro.redirect('/login')
+}
+
+//Search user type admin
+const foundUser = (
+    await db.select().from(PersonalInfo).where(eq(PersonalInfo.userID, user.id))
+  ).at(0);
+
+if(foundUser?.type != "Admin"){
+  return Astro.redirect('/login')
+}
+
+const users = await db.select().from(Users);
+
+---
+
+<Layout title="inicio">
+  <main class="flex flex-col w-full h-full items-center">
+    <Header/>
+
+    <article class="flex justify-start w-full pt-6 px-4">
+        <h1 class="text-blue-500 text-xl font-bold max-w-56 ">{admin.title}</h1>
+    </article>
+
+    <article class="flex flex-col w-full mt-8 px-4 gap-1">
+      <h2 class="text-blue-500 text-lg font-semibold">{admin.users}</h2>
+      <UsersTable users={users}/>
+    </article>
+
+      <Footer/>
+  </main>
+</Layout>

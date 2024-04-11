@@ -1,0 +1,73 @@
+---
+import { DotsIcon } from "./icons/headerIcons";
+---
+
+<script>
+  const tgt = document.querySelector("#tgt")!;
+
+  if (tgt) {
+    tgt.addEventListener("click", async function (e) {
+      e.preventDefault();
+      const res = await fetch("/api/logout.json", {
+        method: "POST",
+      });
+      const { message } = await res.json();
+      if(message){window.location.href = '/login'}
+    });
+  }
+</script>
+
+<section class="flex flex-col w-full text-white text-3xl font-bold pt-2 px-2">
+  <section class="flex justify-end">
+    <button
+      id="dropdownMenuIconButton"
+      data-dropdown-toggle="dropdownDots"
+      data-dropdown-placement="bottom-start"
+      class="inline-flex self-center items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:ring-gray-600"
+      type="button"
+    >
+      <DotsIcon />
+    </button>
+    <div
+      id="dropdownDots"
+      class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-gray-700 dark:divide-gray-600"
+    >
+      <ul
+        class="py-2 text-sm text-gray-700 dark:text-gray-200"
+        aria-labelledby="dropdownMenuIconButton"
+      >
+        <li>
+          <a
+            href="/home"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            >Inicio</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            >Ayuda</a
+          >
+        </li>
+      </ul>
+      <div class="py-2">
+        <button
+          id="tgt"
+          class="block px-4 py-2 text-sm text-red-800 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-red-500 dark:hover:text-red-300"
+          >Cerrar Sesion</button
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="flex justify-center items-center">
+    <p>SAC</p>
+    <img
+      width="50"
+      height="50"
+      src="./images/vaca192.webp"
+      alt="Icono Vaca logo SAC"
+    />
+  </section>
+</section>

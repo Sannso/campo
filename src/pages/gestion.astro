@@ -1,9 +1,7 @@
 ---
-import HomeCard from "../components/atoms/HomeCard.astro";
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro"
-import { home } from "@es";
-import Footer from "@/components/Footer.astro";
+import { gestion } from "@es";
 
 export const prerender = false;
 
@@ -18,12 +16,10 @@ if(user?.id == undefined){
   <main class="flex flex-col w-full h-full items-center">
     <Header/>
 
-    <section
-      class="flex flex-wrap justify-center max-w-4xl pt-20 gap-5 md:gap-12"
-    >
-      {home && home.cards.map((data) => <HomeCard data={data} />)}
-    </section>
+    <article class="flex justify-start w-full pt-6 px-4">
+        <h1 class="text-blue-500 text-xl font-bold max-w-56 ">{gestion.title}</h1>
+    </article>
 
-    <Footer/>
+    
   </main>
 </Layout>

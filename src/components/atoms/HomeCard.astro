@@ -3,10 +3,35 @@ import { InfoIcon, RightIcon } from "../icons/homeIcons";
 import { home } from "@es";
 
 const { data } = Astro.props;
+const link = data.link;
 ---
 
-<card
-  class="flex w-full max-w-80 bg-zinc-800 justify-center rounded-lg shadow-xl px-2 py-2 transition-colors hover:bg-zinc-700"
+<script>
+  class AstroCard extends HTMLElement {
+    constructor() {
+      super();
+
+      // Read the message from the data attribute.
+      const link = this.dataset.link!;
+
+      const aside = this.querySelector("aside")!;
+      aside.addEventListener("click", () => {
+        window.location.href = link;
+      });
+
+      const header = this.querySelector("header")!;
+      header.addEventListener("click", () => {
+        window.location.href = link;
+      });
+    }
+  }
+
+  customElements.define("astro-card", AstroCard);
+</script>
+
+<astro-card
+  data-link={link}
+  class="flex cursor-pointer w-full max-w-80 bg-zinc-800 justify-center rounded-lg shadow-xl px-2 py-2 transition-colors hover:bg-zinc-700"
 >
   <content class="flex flex-col gap-2">
     <header class="text-white text-xl font-semibold text-pretty">
@@ -28,7 +53,7 @@ const { data } = Astro.props;
   >
     <RightIcon size={24} />
   </aside>
-</card>
+</astro-card>
 
 <!-- Main modal -->
 <div
@@ -73,7 +98,9 @@ const { data } = Astro.props;
       </div>
       <!-- Modal body -->
       <div class="p-4 md:p-5 space-y-4">
-        <h2 class="text-base leading-relaxed text-gray-600 dark:text-gray-200 font-semibold">
+        <h2
+          class="text-base leading-relaxed text-gray-600 dark:text-gray-200 font-semibold"
+        >
           {data.title}
         </h2>
         <p class="text-base leading-relaxed text-gray-600 dark:text-gray-200">

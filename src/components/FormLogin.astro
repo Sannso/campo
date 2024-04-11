@@ -1,36 +1,63 @@
 ---
-export const prerender = false
+export const prerender = false;
 
-if (Astro.request.method === "POST") {
-  try {
-    const data = await Astro.request.formData();
-    const email = data.get("email");
-    const password = data.get("password");
-    // Do something with the data
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
-  }
-}
+const errors = { email: "", password: "" };
+
+
 ---
+<script>
+  // Get the form reference
+  const form = document.querySelector("form");
+
+  if (form) {
+    // listen to the submit event of the form
+    form.addEventListener("submit", async function (e) {
+      // Avoid to page flickering and deal with the form client side
+      e.preventDefault();
+
+      // fetch the current route instead of using the HTML form submission
+      const res = await fetch("/api/login.json", {
+        method: "POST",
+        body: new FormData(form),
+      });
+
+      const { message } = await res.json();
+
+      //Mostrar o cultar el error
+      let span = document.getElementById('error')!;
+      if(message != 'Success'){
+        span.style.display = 'block';
+        span.textContent = message
+      }
+      else{
+        span.style.display = 'none';
+        window.location.href = '/home'
+      }
+      
+    });
+    
+  }
+</script>
 
 <form
   method="POST"
   class="flex flex-col items-center text-white font-semibold gap-6 mt-10 [&>label>input]:mt-1 [&>label>input]:rounded-lg
    [&>label>input]:text-black [&>label>input]:font-semibold [&>label>input]:px-1.5 [&>label>input]:py-0.5"
 >
+
+  <span id="error" class="hidden text-lg font-bold text-red-600"></span>
   <label class="flex flex-col">
     Correo:
     <input type="email" name="email" required />
   </label>
+
   <label class="flex flex-col">
     Contraseña:
     <input type="password" name="password" required minlength="6" />
   </label>
 
   <section class="flex gap-3">
-    <button type="submit" class="bg-blue-500 px-2 py-1 rounded-xl font-bold"
+    <button class="bg-blue-500 px-2 py-1 rounded-xl font-bold"
       >Iniciar Sesion</button
     >
     <a

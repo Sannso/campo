@@ -2,24 +2,21 @@
 import Layout from "../layouts/Layout.astro";
 import FormLogin from "../components/FormLogin.astro";
 
-import { db, Users, PersonalInfo } from "astro:db";
 export const prerender = false;
-const users = await db.select().from(Users);
+
+const user = Astro.locals.user;
+if(user?.id != undefined){
+  return Astro.redirect('/home')
+}
+
+
 ---
 
 <Layout title="Login">
   <main class="flex flex-col items-center py-16">
-    <h1 class="text-3xl text-white font-bold">Iniciar Sesion</h1>
+    <h1 class="text-3xl text-blue-500 font-bold">Iniciar Sesion</h1>
     <FormLogin />
 
-    <article class="flex flex-col gap-2">
-      <h2 class="text-white text-center">Usuarios creados</h2>
-      {users && users.map(({ email, password }) => (
-        <p class="text-white text-sm text-wrap">
-          Email: {email}
-        </p>
-    ))}
-    </article>
     
   </main>
 </Layout>

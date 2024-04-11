@@ -1,10 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-//import FormRegister from "../components/FormRegister.astro";
 import {RegisterForm} from "../components/FormRegisterReact";
 import RegisterModal from '../components/modals/RegisterModal.astro'
 
 export const prerender = false;
+const user = Astro.locals.user;
+if(user?.id != undefined){
+  return Astro.redirect('/home')
+}
 ---
 
 <Layout title="Login">

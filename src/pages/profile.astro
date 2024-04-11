@@ -1,0 +1,126 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "@/components/Footer.astro";
+
+import { profile } from "@es";
+
+import { db, Users, PersonalInfo } from "astro:db";
+import { eq } from "astro:db";
+
+export const prerender = false;
+
+const user = Astro.locals.user;
+console.log(user);
+if (user?.id == undefined) {
+  return Astro.redirect("/login");
+}
+
+//Search user type admin
+const foundUser = (
+  await db.select().from(PersonalInfo).where(eq(PersonalInfo.userID, user.id))
+).at(0);
+
+const email = (await db.select().from(Users).where(eq(Users.id, user.id))).at(
+  0
+);
+---
+
+<Layout title="inicio">
+  <main class="flex flex-col w-full h-full items-center">
+    <Header />
+
+    <article class="flex flex-col justify-start w-full max-w-2xl pt-6 px-4">
+      <h1 class="text-blue-500 text-xl font-bold max-w-56">{profile.title}</h1>
+
+      <section class="grid mt-10 gap-4 md:gap-6 mb-6 md:grid-cols-2">
+        <div>
+          <label
+            for="name"
+            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Nombre</label
+          >
+          <input
+            type="text"
+            id="name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={foundUser!.name}
+            readonly
+          />
+        </div>
+        <div>
+          <label
+            for="email"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Correo</label
+          >
+          <input
+            type="text"
+            id="email"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={email!.email}
+            readonly
+          />
+        </div>
+        <div>
+          <label
+            for="first_name"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Primer Apellido</label
+          >
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={foundUser!.firstName}
+            readonly
+          />
+        </div>
+        <div>
+            <label
+              for="last_name"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Segundo Apellido</label
+            >
+            <input
+              type="text"
+              id="last_name"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              value={foundUser!.lastName}
+              readonly
+            />
+          </div>
+          <div>
+            <label
+              for="celular"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Numero de telefono</label
+            >
+            <input
+              type="text"
+              id="celular"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              value={foundUser!.cellphone}
+              readonly
+            />
+          </div>
+          <div>
+            <label
+              for="tipo"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Tipo</label
+            >
+            <input
+              type="text"
+              id="tipo"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              value={foundUser!.type}
+              readonly
+            />
+          </div>
+      </section>
+    </article>
+
+    <Footer />
+  </main>
+</Layout>
